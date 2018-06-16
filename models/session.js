@@ -1,6 +1,5 @@
-import { Z_DEFAULT_STRATEGY } from "zlib";
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, DataType) {
     var Session = sequelize.define("Session", {
         name: {
             type: DataType.STRING,
