@@ -1,23 +1,22 @@
-import { Z_DEFAULT_STRATEGY } from "zlib";
 
 module.exports = function(sequelize, DataTypes) {
     var Session = sequelize.define("Session", {
         name: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
         platform: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
         game_playing: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
