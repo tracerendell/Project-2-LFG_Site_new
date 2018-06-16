@@ -2,8 +2,8 @@ $(document).ready(function () {
     /* global moment */
 
     // blogContainer holds all of our posts
-    var blogContainer = $(".blog-container");
-    var postCategorySelect = $("#category");
+    var sessionContainer = $(".session-container");
+    var sessionCategorySelect = $("#category");
     // Click events for the edit and delete buttons
     $(document).on("click", "button.delete", handleSessionDelete);
     $(document).on("click", "button.edit", handleSessionEdit);
@@ -13,9 +13,9 @@ $(document).ready(function () {
     // The code below handles the case where we want to get blog posts for a specific author
     // Looks for a query param in the url for author_id
     var url = window.location.search;
-    var authorId;
+    var playerId;
     if (url.indexOf("?player_id=") !== -1) {
-        authorId = url.split("=")[1];
+        playerId = url.split("=")[1];
         getSessions(playerId);
     }
     // If there's no authorId we just get all posts as usual
@@ -30,9 +30,9 @@ $(document).ready(function () {
         if (playerId) {player
             playerId = "/?player_id=" + playerId;
         }
-        $.get("/api/sessions" + authorId, function (data) {
+        $.get("/api/sessions" + playerId, function (data) {
             console.log("Sessions", data);
-            posts = data;
+            sessions = data;
             if (!sessions || !sessions.length) {
                 displayEmpty(profile);
             }
@@ -97,7 +97,7 @@ $(document).ready(function () {
         newSessionCardHeading.append(deleteBtn);
         newSessionCardHeading.append(editBtn);
         newSessionCardHeading.append(newSessionTitle);
-        newSessionCardHeading.append(newSessionAuthor);
+        newSessionCardHeading.append(newSessionPlayer);
         newSessionCardBody.append(newSessionBody);
         newSessionCard.append(newSessionCardHeading);
         newSessionCard.append(newSessionCardBody);
@@ -110,7 +110,7 @@ $(document).ready(function () {
         var currentSession = $(this)
             .parent()
             .parent()
-            .data("post");
+            .data("session");
         deleteSession(currentSession.id);
     }
 
