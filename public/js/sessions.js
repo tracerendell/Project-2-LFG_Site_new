@@ -133,7 +133,7 @@ $(document).ready(function () {
         blogContainer.empty();
         var messageH2 = $("<h2>");
         messageH2.css({ "text-align": "center", "margin-top": "50px" });
-        messageH2.html("No sesions yet" + partial + ", navigate <a href='/cms" + query +
+        messageH2.html("No sessions yet" + partial + ", navigate <a href='/cms" + query +
             "'>here</a> in order to get started.");
         blogContainer.append(messageH2);
     }
