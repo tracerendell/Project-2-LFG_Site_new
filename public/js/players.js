@@ -1,16 +1,4 @@
 $(document).ready(function() {
-<<<<<<< HEAD
-    //get reference to name input and player cont, as well as table body
-    var nameInput = $("#player-name");
-    var playerList = $("#tbody");
-    var playerContainer = $(".player-container");
-
-    //add event listener for form to create new object/delete button
-    $(document).on("submit", "player-form", handlePlayerFormSubmit);
-    $(document).on("click", ".delete-player", handleDeleteButtonPress);
-
-    //get the initial list of players
-=======
     //getting ref to the name input and player container as well as table body
     var nameInput = $("#player-name");
     var playerList = $("tbody");
@@ -21,25 +9,16 @@ $(document).ready(function() {
     $(document).on("click", ".delete-player", handleDeleteButtonPress);
 
     //getting the initial list of Players
->>>>>>> 5de0ce5a8f70d9967464e29edbeb52332961ba00
     getPlayers();
 
     //function to handle what happens when form is submitted
     function handlePlayerFormSubmit(event) {
         event.preventDefault();
-<<<<<<< HEAD
-        //dont do anything if the fields arent filled
-        if (!nameInput.val().trim().trim()) {
-            return;
-        }
-        //calling the upsertPlayer function
-=======
 
         if (!nameInput.val().trim().trim()) {
             return;
         }
 
->>>>>>> 5de0ce5a8f70d9967464e29edbeb52332961ba00
         upsertPlayer({
             name: nameInput
                 .val()
@@ -47,26 +26,62 @@ $(document).ready(function() {
         });
     }
 
-<<<<<<< HEAD
-    //function to creat player
-=======
     //function for creating player calls getPlayers on completion
->>>>>>> 5de0ce5a8f70d9967464e29edbeb52332961ba00
     function upsertPlayer(playerData) {
         $.post("/api/players", playerData)
         .then(getPlayers);
     }
 
-<<<<<<< HEAD
-    //function for creating a new list row for player
-    function createPlayerRow(platerData) {
-        var newTr = $("<tr>");
-        newTr.data("player)
-        newTr.append("<td>")
-=======
     //function for creating new list row for players
     function createPlayerRow(playerData) {
-        var new
->>>>>>> 5de0ce5a8f70d9967464e29edbeb52332961ba00
+        var newTr = $("<tr>");
+        newTr.data("player", playerData);
+        newTr.append("<td>" + playerData.name + "</td>");
+        newTr.append("<td>" + playerData.Sessions.length + "</td>");
+        return newTr;
     }
-})
+
+    //function for retrieving players and getting them ready to be rendered
+    function getPlayers() {
+        $.get("/api/players", function(data) {
+            var rowsToAdd = [];
+            for (var i = 0; i < data.length; i++) {
+                rowsToAdd.push(createPlayerRow(data[i]));
+            }
+            renderPlayerList(rowsToAdd);
+            nameInput.val("");
+        });
+    }
+
+    //function for rendering list of players to page
+    function renderPlayerList(rows) {
+        playerList.children().not(":last").remove();
+        playerContainer.children(".alert").remove();
+        if (rows.length) {
+            console.log(rows);
+            playerList.prepend(rows);
+        }
+        else {
+            renderEmpty();
+        }
+    }
+
+    //function for handling empty render
+    function renderEmpty() {
+        var alertDiv = $("<div>");
+        alertDiv.addClass("alert alert-danger");
+        alertDiv.text("You must create a Player before you create a Session");
+        playerContainer.append(alertDiv);
+    }
+
+    //function for handling delete
+    function handleDeleteButtonPress() {
+        var listItemData = $(this).parent("td").parent("tr").data("player");
+        var id = listItemData.id;
+        $.ajax({
+            method: "DELETE",
+            url: "/api/players/" + id
+        })
+        .then(getPlayers);
+    }
+});
