@@ -33,7 +33,7 @@ $(document).ready(function () {
         $.get("/api/sessions" + authorId, function (data) {
             console.log("Sessions", data);
             posts = data;
-            if (!sessions || !seessions.length) {
+            if (!sessions || !sessions.length) {
                 displayEmpty(profile);
             }
             else {
@@ -67,60 +67,60 @@ $(document).ready(function () {
     function createNewRow(session) {
         var formattedDate = new Date(session.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-        var newCard = $("<div>");
-        newPostCard.addClass("card");
-        var newPostCardHeading = $("<div>");
-        newPostCardHeading.addClass("card-header");
+        var newSessionCard = $("<div>");
+        newSessionCard.addClass("card");
+        var newSessionCardHeading = $("<div>");
+        newSessionCardHeading.addClass("card-header");
         var deleteBtn = $("<button>");
         deleteBtn.text("x");
         deleteBtn.addClass("delete btn btn-danger");
         var editBtn = $("<button>");
         editBtn.text("EDIT");
         editBtn.addClass("edit btn btn-info");
-        var newPostTitle = $("<h2>");
-        var newPostDate = $("<small>");
-        var newPostProfile = $("<h5>");
-        newPostProfile.text("Written by: " + session.Profile.name);
-        newPostProfile.css({
+        var newSessionTitle = $("<h2>");
+        var newSessionDate = $("<small>");
+        var newSessionProfile = $("<h5>");
+        newSessionProfile.text("Written by: " + session.Profile.name);
+        newSessionProfile.css({
             float: "right",
             color: "blue",
             "margin-top":
                 "-10px"
         });
-        var newPostCardBody = $("<div>");
-        newPostCardBody.addClass("card-body");
-        var newPostBody = $("<p>");
-        newPostTitle.text(post.title + " ");
-        newPostBody.text(post.body);
-        newPostDate.text(formattedDate);
-        newPostTitle.append(newPostDate);
-        newPostCardHeading.append(deleteBtn);
-        newPostCardHeading.append(editBtn);
-        newPostCardHeading.append(newPostTitle);
-        newPostCardHeading.append(newPostAuthor);
-        newPostCardBody.append(newPostBody);
-        newPostCard.append(newPostCardHeading);
-        newPostCard.append(newPostCardBody);
-        newPostCard.data("post", post);
-        return newPostCard;
+        var newSessionCardBody = $("<div>");
+        newSessionCardBody.addClass("card-body");
+        var newSessionBody = $("<p>");
+        newSessionTitle.text(session.title + " ");
+        newSessionBody.text(session.body);
+        newSessionDate.text(formattedDate);
+        newSessionTitle.append(newSessionDate);
+        newSessionCardHeading.append(deleteBtn);
+        newSessionCardHeading.append(editBtn);
+        newSessionCardHeading.append(newSessionTitle);
+        newSessionCardHeading.append(newSessionAuthor);
+        newSessionCardBody.append(newSessionBody);
+        newSessionCard.append(newSessionCardHeading);
+        newSessionCard.append(newSessionCardBody);
+        newSessionCard.data("session", session);
+        return newSessionCard;
     }
 
     // This function figures out which post we want to delete and then calls deletePost
-    function handlePostDelete() {
-        var currentPost = $(this)
+    function handleSessionDelete() {
+        var currentSession = $(this)
             .parent()
             .parent()
             .data("post");
-        deletePost(currentPost.id);
+        deleteSession(currentSession.id);
     }
 
     // This function figures out which post we want to edit and takes it to the appropriate url
-    function handlePostEdit() {
-        var currentPost = $(this)
+    function handleSessionEdit() {
+        var currentSession = $(this)
             .parent()
             .parent()
-            .data("post");
-        window.location.href = "/cms?post_id=" + currentPost.id;
+            .data("session");
+        window.location.href = "/cms?session_id=" + currentSession.id;
     }
 
     // This function displays a message when there are no posts
@@ -128,12 +128,12 @@ $(document).ready(function () {
         var query = window.location.search;
         var partial = "";
         if (id) {
-            partial = " for Author #" + id;
+            partial = " for Player #" + id;
         }
         blogContainer.empty();
         var messageH2 = $("<h2>");
         messageH2.css({ "text-align": "center", "margin-top": "50px" });
-        messageH2.html("No posts yet" + partial + ", navigate <a href='/cms" + query +
+        messageH2.html("No sesions yet" + partial + ", navigate <a href='/cms" + query +
             "'>here</a> in order to get started.");
         blogContainer.append(messageH2);
     }
