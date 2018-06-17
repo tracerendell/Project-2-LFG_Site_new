@@ -2,7 +2,7 @@ $(document).ready(function () {
     /* global moment */
 
     // blogContainer holds all of our sessions
-    var blogContainer = $(".blog-container");
+    var sessionsContainer = $(".sessions-container");
     var sessionCategorySelect = $("#category");
     // Click events for the edit and delete buttons
     $(document).on("click", "button.delete", handleSessionDelete);
@@ -14,7 +14,7 @@ $(document).ready(function () {
     // Looks for a query param in the url for player_id
     var url = window.location.search;
     var playerId;
-    if (url.indexOf("?player_id=") !== -1) {
+    if (url.indexOf("?playerId=") !== -1) {
         playerId = url.split("=")[1];
         getSessions(playerId);
     }
@@ -28,7 +28,7 @@ $(document).ready(function () {
     function getSessions(player) {
        playerId = player || "";
         if (playerId) {player
-            playerId = "/?player_id=" + playerId;
+            playerId = "/?playerId=" + playerId;
         }
         $.get("/api/sessions" + playerId, function (data) {
             console.log("Sessions", data);
@@ -55,12 +55,12 @@ $(document).ready(function () {
 
     // InitializeRows handles appending all of our constructed session HTML inside blogContainer
     function initializeRows() {
-        blogContainer.empty();
+        sessionsContainer.empty();
         var sessionToAdd = [];
         for (var i = 0; i < sessions.length; i++) {
             sessionToAdd.push(createNewRow(sessions[i]));
         }
-        blogContainer.append(sessionsToAdd);
+        sessionsContainer.append(sessionToAdd);
     }
 
     // This function constructs a session's HTML
@@ -77,10 +77,10 @@ $(document).ready(function () {
         var editBtn = $("<button>");
         editBtn.text("EDIT");
         editBtn.addClass("edit btn btn-info");
-        var newSessionTitle = $("<h2>");
+        var newSessionName = $("<h2>");
         var newSessionDate = $("<small>");
         var newSessionProfile = $("<h5>");
-        newSessionProfile.text("Written by: " + session.Profile.name);
+        newSessionProfile.text("Written by: " + session.name);
         newSessionProfile.css({
             float: "right",
             color: "blue",
@@ -90,14 +90,14 @@ $(document).ready(function () {
         var newSessionCardBody = $("<div>");
         newSessionCardBody.addClass("card-body");
         var newSessionBody = $("<p>");
-        newSessionTitle.text(session.title + " ");
+        newSessionName.text(session.title + " ");
         newSessionBody.text(session.body);
         newSessionDate.text(formattedDate);
-        newSessionTitle.append(newSessionDate);
+        newSessionName.append(newSessionDate);
         newSessionCardHeading.append(deleteBtn);
         newSessionCardHeading.append(editBtn);
-        newSessionCardHeading.append(newSessionTitle);
-        newSessionCardHeading.append(newSessionPlayer);
+        newSessionCardHeading.append(newSessionName);
+        newSessionCardHeading.append(newSessionProfile);
         newSessionCardBody.append(newSessionBody);
         newSessionCard.append(newSessionCardHeading);
         newSessionCard.append(newSessionCardBody);
@@ -130,12 +130,12 @@ $(document).ready(function () {
         if (id) {
             partial = " for Player #" + id;
         }
-        blogContainer.empty();
+        sessionsContainer.empty();
         var messageH2 = $("<h2>");
         messageH2.css({ "text-align": "center", "margin-top": "50px" });
         messageH2.html("No sessions yet" + partial + ", navigate <a href='/cms" + query +
             "'>here</a> in order to get started.");
-        blogContainer.append(messageH2);
+        sessionsContainer.append(messageH2);
     }
 
 });
