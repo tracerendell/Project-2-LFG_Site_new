@@ -12,8 +12,11 @@ var PORT = process.env.PORT || 8080;
 var db = require("./models");
 
 //parsing stuff
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
+
+app.use(express.static("public"));
 //routes
 require("./routes/html-routes.js")(app);
 require("./routes/player-api-routes.js")(app);

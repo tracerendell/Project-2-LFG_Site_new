@@ -33,28 +33,40 @@
      <div class="container hidden">
         <div class="row top-30">
           <div class="col-md-2 col-sm-2">
-            <a class="btn btn-light" href="/blog">Go to Blog</a>
+            <a class="btn btn-light" href="/sessions">Go to Sessions</a> 
           </div>
           <div class="col-md-2 col-sm-2">
-            <a class="btn btn-light" href="/authors">Manage Authors</a>
+            <a class="btn btn-light" href="/players">Manage Players</a>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 offset-md-3">
             <form id="cms">
               <div class="form-group">
-                <label for="title">Title:</label>
-                <input placeholder="Post Title" type="text" class="form-control" id="title">
+                <label for="title">Session Name:</label>
+                <input placeholder="Session Name" type="text" class="form-control" id="session_name">
                 <br />
-                <label for="body">Body:</label>
-                <textarea placeholder="Post Body" class="form-control" rows="10" id="body"></textarea>
                 <div class="form-group">
-                  <label for="category">Select Author:</label>
-                  <select class="custom-select" id="author">
+                  <label for="category">Select Platform:</label>
+                  <select class="custom-select" id="platform">
+                    <option value=""></option>
+                    <option value="PC">PC</option>
+                    <option value="Xbox One">Xbox One</option>
+                    <option value="Playstation 4">Playstation 4</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="category">Select Game:</label>
+                  <select class="custom-select" id="game_playing">
+                    <option value=""></option>
+                    <option value="Fortnite">Fortnite</option>
+                    <option value="Destiny 2">Destiny 2</option>
+                    <option value="PUBG">PUBG (Player Unknown's Battle Grounds</option>
+                    <option value="Overwatch">Overwatch</option>
                   </select>
                 </div>
                 <br />
-                <button type="submit" class="btn btn-success submit">Submit</button>
+                <button type="submit" class="btn btn-success submit">Ready to Play!</button>
               </div>
             </form>
           </div>
@@ -84,6 +96,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Custom Script file not populated yet -->
     <script src="js/cms.js" type="text/javascript"></script>
-    <script src="js/domStuff.js" type="text/javascript"></script>
+    <!-- <script src="js/domStuff.js" type="text/javascript"></script> -->
     </body>
   </html>

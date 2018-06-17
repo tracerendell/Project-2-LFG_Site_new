@@ -43,7 +43,7 @@ module.exports = function (app) {
     });
 
     //Delete route
-    app.delete("/api/posts/:id", function (req, res) {
+    app.delete("/api/sessions/:id", function (req, res) {
         db.Session.destroy({
             where: {
                 id: req.params.id
