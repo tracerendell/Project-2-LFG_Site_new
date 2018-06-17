@@ -20,7 +20,7 @@
                 <div class="row row-centered">
                     <div class="col-md-12 col-centered">
                        <div class="alignLogo">    
-                        <img class="logoImage" src="images/Connected-GamerWhite.png" />
+                        <img class="logoImage" src="images/Connected-GamerWhitewRed.png" />
                        </div> 
                     </div>
                 </div>
@@ -30,6 +30,7 @@
     
 <!-- Nintendo Controller -->
 <br>
+<div id="ninControl">
 <figure id="nespad">
         <div class="cord"></div>
         <section class="dpad-pane">
@@ -63,8 +64,10 @@
           </div>
         </section>
       </figure>
-    
-      <style>
+    </div>
+
+
+    <style>
           /**
      * Font-definition & partial css reset. Only Woff, since we lack support for IE8 anyway.
      */
@@ -86,6 +89,10 @@
     
     body { font: 15px/2 'Squada One', cursive; }
     
+    #ninControl {
+      position: relative;
+    }
+
     .button {
       outline: none;
       transition: all .05s ease;
@@ -139,7 +146,7 @@
         4em 3em 1.4em hsla(0, 0%, 20%, .1); }
       .cord {
         position: absolute;
-        top: 19em;
+        top: -5.5em;
         width: 1.1em;
         height: 5.5em;
         background-color: #bbb;
