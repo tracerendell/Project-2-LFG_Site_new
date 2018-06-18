@@ -6,6 +6,7 @@ $(document).ready(function() {
     var cmsForm = $("#cms");
     var platformSelect = $("#platform");
     var gameSelect = $("#game");
+    var playersTable = $("#players-table");
 
     //event listener for form submit
     $(cmsForm).on("submit", handleFormSubmit);
@@ -104,26 +105,35 @@ $(document).ready(function() {
     //function either renders player list or directs user to player creation page
     function renderPlayerList(data) {
         if (!data.length) {
-            window.location.href = "/players";
+            // window.location.href = "/players";
         }
-        $(".hidden").removeClass("hidden");
+        // $(".hidden").removeClass("hidden"); // @TODO this doesn't seem to do anything
         var rowsToAdd = [];
         for (var i = 0; i < data.length; i++) {
             rowsToAdd.push(createPlayerRow(data[i]));
         }
-        playerSelect.empty();
+        playersTable.empty();
         console.log(rowsToAdd);
         console.log(playerSelect);
-        playerSelect.append(rowsToAdd);
-        playerSelect.val(playerId);
+        playersTable.append(rowsToAdd);
+        // playerSelect.val(playerId);
     }
 
     //creates player options in the dropdown
     function createPlayerRow(player) {
-        var listOption = $("<option>");
-        listOption.attr("value", player.id);
-        listOption.text(player.name);
-        return listOption;
+        // var listOption = $("<option>");
+        // listOption.attr("value", player.id);
+        // listOption.text(player.name);
+        // return listOption;
+
+        var tr = $("<tr>");
+        tr.append($("<td>").text(player.name));
+        tr.append($("<td>").text(player.Sessions.length));
+        tr.append($("<td>").html($("<a>").attr("href", "/players/" + player.id).text('See Sessions'))); // @TODO implement route
+        tr.append($("<td>").html($("<a>").attr("href", "/players/" + player.id + "/sessions").text('Create Sessions'))); // @TODO implement
+        tr.append($("<td>").html($("<a>").attr("href", "/players/delete/" + player.id).text('Delete Player'))); // @TODO implement
+
+        return tr;
     }
 
     //update a given sesh, bring user to sesh page when done
