@@ -104,7 +104,7 @@ $(document).ready(function() {
     //function either renders player list or directs user to player creation page
     function renderPlayerList(data) {
         if (!data.length) {
-            window.location.href = "/players";
+            // window.location.href = "/players";
         }
         $(".hidden").removeClass("hidden");
         var rowsToAdd = [];
