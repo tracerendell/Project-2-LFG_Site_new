@@ -2,6 +2,10 @@ body {
     background-color: #F8F9F9;
 }
 
+.bottomPicCont {
+  
+}
+
 #cms {
 padding: 0 0 50px 0;
 margin: 0 0 50px 0;
@@ -79,11 +83,11 @@ h6 {
 }
 
 .top-30 {
-  padding: 10px 0 40px 0px;
+  padding: 40px 0 40px 0px;
 }
 
 .top31 {
-  padding: 10px 0 20px 25px;
+  padding: 40px 0 20px 25px;
 }
 
 /* Login Form CSS */
@@ -166,6 +170,31 @@ h6 {
     bottom: 0;
     text-align: center;
     padding: 13px 0 0 0;
+    background-image: url("../images/footerbg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0px -0px; 
+}
+
+.jumbotron2 {
+  background-image: url("../Images/headerbg.jpg");
+  background-position: 0 0px; 
+  background-size: 100% 80%;
+  background-repeat: no-repeat;
+}
+
+.jumbotron3 {
+  background-image: url("../Images/headerbg3.jpg");
+  background-position: 0 0; 
+  background-size: 100% 80%;
+  background-repeat: no-repeat;
+}
+
+.jumbotron4 {
+  background-image: url("../Images/headerbg2.jpg");
+  background-position: 0 0; 
+  background-size: 100% 80%;
+  background-repeat: no-repeat;
 }
 
 
