@@ -1,38 +1,38 @@
 $(document).ready(function () {
     /* global moment */
 
-    // blogContainer holds all of our posts
-    var blogContainer = $(".blog-container");
-    var postCategorySelect = $("#category");
+    // blogContainer holds all of our sessions
+    var sessionsContainer = $(".sessions-container");
+    var sessionCategorySelect = $("#category");
     // Click events for the edit and delete buttons
     $(document).on("click", "button.delete", handleSessionDelete);
     $(document).on("click", "button.edit", handleSessionEdit);
-    // Variable to hold our posts
+    // Variable to hold our sessions
     var sessions;
 
-    // The code below handles the case where we want to get blog posts for a specific author
-    // Looks for a query param in the url for author_id
+    // The code below handles the case where we want to get blog sessions for a specific player
+    // Looks for a query param in the url for player_id
     var url = window.location.search;
-    var authorId;
-    if (url.indexOf("?player_id=") !== -1) {
-        authorId = url.split("=")[1];
+    var playerId;
+    if (url.indexOf("?playerId=") !== -1) {
+        playerId = url.split("=")[1];
         getSessions(playerId);
     }
-    // If there's no authorId we just get all posts as usual
+    // If there's no playerId we just get all sessions as usual
     else {
         getSessions();
     }
 
 
-    // This function grabs posts from the database and updates the view
+    // This function grabs sessions from the database and updates the view
     function getSessions(player) {
        playerId = player || "";
         if (playerId) {player
-            playerId = "/?player_id=" + playerId;
+            playerId = "/?playerId=" + playerId;
         }
-        $.get("/api/sessions" + authorId, function (data) {
+        $.get("/api/sessions" + playerId, function (data) {
             console.log("Sessions", data);
-            posts = data;
+            sessions = data;
             if (!sessions || !sessions.length) {
                 displayEmpty(profile);
             }
@@ -42,7 +42,7 @@ $(document).ready(function () {
         });
     }
 
-    // This function does an API call to delete posts
+    // This function does an API call to delete sessions
     function deleteSession(id) {
         $.ajax({
             method: "DELETE",
@@ -53,17 +53,17 @@ $(document).ready(function () {
             });
     }
 
-    // InitializeRows handles appending all of our constructed post HTML inside blogContainer
+    // InitializeRows handles appending all of our constructed session HTML inside blogContainer
     function initializeRows() {
-        blogContainer.empty();
+        sessionsContainer.empty();
         var sessionToAdd = [];
         for (var i = 0; i < sessions.length; i++) {
             sessionToAdd.push(createNewRow(sessions[i]));
         }
-        blogContainer.append(sessionsToAdd);
+        sessionsContainer.append(sessionToAdd);
     }
 
-    // This function constructs a post's HTML
+    // This function constructs a session's HTML
     function createNewRow(session) {
         var formattedDate = new Date(session.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
@@ -77,10 +77,10 @@ $(document).ready(function () {
         var editBtn = $("<button>");
         editBtn.text("EDIT");
         editBtn.addClass("edit btn btn-info");
-        var newSessionTitle = $("<h2>");
+        var newSessionName = $("<h2>");
         var newSessionDate = $("<small>");
         var newSessionProfile = $("<h5>");
-        newSessionProfile.text("Written by: " + session.Profile.name);
+        newSessionProfile.text("Written by: " + session.name);
         newSessionProfile.css({
             float: "right",
             color: "blue",
@@ -90,14 +90,14 @@ $(document).ready(function () {
         var newSessionCardBody = $("<div>");
         newSessionCardBody.addClass("card-body");
         var newSessionBody = $("<p>");
-        newSessionTitle.text(session.title + " ");
+        newSessionName.text(session.title + " ");
         newSessionBody.text(session.body);
         newSessionDate.text(formattedDate);
-        newSessionTitle.append(newSessionDate);
+        newSessionName.append(newSessionDate);
         newSessionCardHeading.append(deleteBtn);
         newSessionCardHeading.append(editBtn);
-        newSessionCardHeading.append(newSessionTitle);
-        newSessionCardHeading.append(newSessionAuthor);
+        newSessionCardHeading.append(newSessionName);
+        newSessionCardHeading.append(newSessionProfile);
         newSessionCardBody.append(newSessionBody);
         newSessionCard.append(newSessionCardHeading);
         newSessionCard.append(newSessionCardBody);
@@ -105,16 +105,16 @@ $(document).ready(function () {
         return newSessionCard;
     }
 
-    // This function figures out which post we want to delete and then calls deletePost
+    // This function figures out which session we want to delete and then calls deletePost
     function handleSessionDelete() {
         var currentSession = $(this)
             .parent()
             .parent()
-            .data("post");
+            .data("session");
         deleteSession(currentSession.id);
     }
 
-    // This function figures out which post we want to edit and takes it to the appropriate url
+    // This function figures out which session we want to edit and takes it to the appropriate url
     function handleSessionEdit() {
         var currentSession = $(this)
             .parent()
@@ -123,19 +123,19 @@ $(document).ready(function () {
         window.location.href = "/cms?session_id=" + currentSession.id;
     }
 
-    // This function displays a message when there are no posts
+    // This function displays a message when there are no sessions
     function displayEmpty(id) {
         var query = window.location.search;
         var partial = "";
         if (id) {
             partial = " for Player #" + id;
         }
-        blogContainer.empty();
+        sessionsContainer.empty();
         var messageH2 = $("<h2>");
         messageH2.css({ "text-align": "center", "margin-top": "50px" });
-        messageH2.html("No sesions yet" + partial + ", navigate <a href='/cms" + query +
+        messageH2.html("No sessions yet" + partial + ", navigate <a href='/cms" + query +
             "'>here</a> in order to get started.");
-        blogContainer.append(messageH2);
+        sessionsContainer.append(messageH2);
     }
 
 });

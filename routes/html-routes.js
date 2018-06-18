@@ -18,7 +18,7 @@ module.exports = function(app) {
 
     //sessions route loads sessions.html
     app.get("/sessions", function(req, res) {
-        res.sendFile(path.join(__dirname, "..public/sessions.html"));
+        res.sendFile(path.join(__dirname, "../public/sessions.html"));
     });
 
     //player route loads player-manager.html
