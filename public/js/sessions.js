@@ -10,7 +10,7 @@ $(document).ready(function () {
     // Variable to hold our sessions
     var sessions;
 
-    // The code below handles the case where we want to get blog sessions for a specific player
+    // The code below handles the case where we want to get sessions for a specific player
     // Looks for a query param in the url for player_id
     var url = window.location.search;
     var playerId;
@@ -75,12 +75,12 @@ $(document).ready(function () {
         deleteBtn.text("x");
         deleteBtn.addClass("delete btn btn-danger");
         var editBtn = $("<button>");
-        editBtn.text("EDIT");
+        editBtn.text("Join Session");
         editBtn.addClass("edit btn btn-info");
-        var newSessionName = $("<h2>");
+        var newSessionName = $("<h3>");
         var newSessionDate = $("<small>");
         var newSessionPlayer = $("<h5>");
-        newSessionPlayer.text("Written by: " + session.Player.name);
+        newSessionPlayer.text("Created by: " + session.Player.name);
         newSessionPlayer.css({
             float: "right",
             color: "blue",
@@ -89,16 +89,16 @@ $(document).ready(function () {
         });
         var newSessionCardBody = $("<div>");
         newSessionCardBody.addClass("card-body");
-        var newSessionBody = $("<p>");
-        newSessionName.text(session.title + " ");
-        newSessionBody.text(session.body);
+        var newSessionPlatformAndGame = $("<p>");
+        newSessionName.text(session.name + " ");
+        newSessionPlatformAndGame.text(session.Player.name + " is playing " + session.game_playing + " on " + session.platform);
         newSessionDate.text(formattedDate);
         newSessionName.append(newSessionDate);
         newSessionCardHeading.append(deleteBtn);
         newSessionCardHeading.append(editBtn);
         newSessionCardHeading.append(newSessionName);
         newSessionCardHeading.append(newSessionPlayer);
-        newSessionCardBody.append(newSessionBody);
+        newSessionCardBody.append(newSessionPlatformAndGame);
         newSessionCard.append(newSessionCardHeading);
         newSessionCard.append(newSessionCardBody);
         newSessionCard.data("session", session);
