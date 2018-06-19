@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     //getting jQuery ref to session name, platform, game_playing, form, and player select
     var playerSelect = $("#player");
-    var sessionInput = $("#session");
+    var sessionInput = $("#session_name");
     var cmsForm = $("#cms");
     var platformSelect = $("#platform");
     var gameSelect = $("#game");
@@ -22,7 +22,7 @@ $(document).ready(function() {
     //if we have this section in our url we pull post id from url
     if (url.indexOf("?session_id=") !== -1) {
         sessionId = url.split("=")[1];
-        getSessionData(SessionId, "session");
+        getSessionData(sessionId, "session");
     }
     // otherwise if we have player_id in our url, preset player select box to be our Player
     else if (url.indexOf("?player_id=") !== -1) {
@@ -36,7 +36,7 @@ $(document).ready(function() {
     function handleFormSubmit(event) {
         event.preventDefault();
         //wont submit post if we are missing anything
-        if (!playerSelect.val() || !platformSelect.val() || !gameSelect.val()) {
+        if (!sessionInput.val().trim().trim() || !platformSelect.val() || !gameSelect.val() || !playerSelect.val()) {
             return;
         }
 
@@ -51,6 +51,7 @@ $(document).ready(function() {
 
             game_playing: gameSelect
                 .val()
+
         };
 
         //if we are updating a session run updateSession, otherwise run submitSession
@@ -66,7 +67,7 @@ $(document).ready(function() {
     //submits a new sesh and brings user to sessions page
     function submitSession(session) {
         $.post("/api/sessions", session, function() {
-            window.location.href = "/sessions";
+            window.location.href = "/session";
         });
     }
 
@@ -87,7 +88,7 @@ $(document).ready(function() {
             if (data) {
                 console.log(data.PlayerId || data.id);
                 //if this session exists, prefill cms form
-                sessionInput.val(data.session);
+                sessionInput.val(data.name);
                 platformSelect.val(data.platform);
                 gameSelect.val(data.game_playing)
                 playerId = data.PlayerId || data.id;
@@ -144,7 +145,7 @@ $(document).ready(function() {
             data: session
         })
         .then(function() {
-            window.location.href = "/blog";
+            window.location.href = "/session";
         });
     }
 });

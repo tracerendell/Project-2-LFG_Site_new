@@ -2,7 +2,7 @@ $(document).ready(function () {
     /* global moment */
 
     // blogContainer holds all of our sessions
-    var sessionsContainer = $(".sessions-container");
+    var sessionContainer = $(".session-container");
     var sessionCategorySelect = $("#category");
     // Click events for the edit and delete buttons
     $(document).on("click", "button.delete", handleSessionDelete);
@@ -27,14 +27,14 @@ $(document).ready(function () {
     // This function grabs sessions from the database and updates the view
     function getSessions(player) {
        playerId = player || "";
-        if (playerId) {player
-            playerId = "/?playerId=" + playerId;
+        if (playerId) {
+            playerId = "/?player_id=" + playerId;
         }
         $.get("/api/sessions" + playerId, function (data) {
             console.log("Sessions", data);
             sessions = data;
             if (!sessions || !sessions.length) {
-                displayEmpty(profile);
+                displayEmpty(player);
             }
             else {
                 initializeRows();
@@ -55,12 +55,12 @@ $(document).ready(function () {
 
     // InitializeRows handles appending all of our constructed session HTML inside blogContainer
     function initializeRows() {
-        sessionsContainer.empty();
-        var sessionToAdd = [];
+        sessionContainer.empty();
+        var sessionsToAdd = [];
         for (var i = 0; i < sessions.length; i++) {
-            sessionToAdd.push(createNewRow(sessions[i]));
+            sessionsToAdd.push(createNewRow(sessions[i]));
         }
-        sessionsContainer.append(sessionToAdd);
+        sessionContainer.append(sessionsToAdd);
     }
 
     // This function constructs a session's HTML
@@ -79,9 +79,9 @@ $(document).ready(function () {
         editBtn.addClass("edit btn btn-info");
         var newSessionName = $("<h2>");
         var newSessionDate = $("<small>");
-        var newSessionProfile = $("<h5>");
-        newSessionProfile.text("Written by: " + session.name);
-        newSessionProfile.css({
+        var newSessionPlayer = $("<h5>");
+        newSessionPlayer.text("Written by: " + session.Player.name);
+        newSessionPlayer.css({
             float: "right",
             color: "blue",
             "margin-top":
@@ -97,7 +97,7 @@ $(document).ready(function () {
         newSessionCardHeading.append(deleteBtn);
         newSessionCardHeading.append(editBtn);
         newSessionCardHeading.append(newSessionName);
-        newSessionCardHeading.append(newSessionProfile);
+        newSessionCardHeading.append(newSessionPlayer);
         newSessionCardBody.append(newSessionBody);
         newSessionCard.append(newSessionCardHeading);
         newSessionCard.append(newSessionCardBody);
