@@ -2,9 +2,70 @@ body {
     background-color: #F8F9F9;
 }
 
-.bottomPicCont {
-  
+
+#newSessionBox {
+width: 200px;
+background-color: #494949;  
+padding: 10px;
+margin: auto;
+border-radius: 10px;
+text-align: center;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+#managePlayersBox {
+width: 200px;
+background-color: #494949;    
+padding: 10px;
+margin: auto;
+border-radius: 10px;
+text-align: center;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#newSessionBox2 {
+    width: 200px;
+    background-color: #494949;  
+    padding: 10px;
+    margin: auto;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+#managePlayersBox2 {
+    width: 200px;
+    background-color: #494949;    
+    padding: 10px;
+    margin: auto;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+.iconColorSize {
+ color: white;
+ height: 90px;
+ padding: 10px 0 15px 0;
+ -webkit-filter: drop-shadow(5px 5px 5px #222);
+ filter: drop-shadow(5px 5px 5px #222);
+
+}
+
+.iconColorSize2 {
+    color: white;
+    height: 90px;
+    padding: 0 0 15px 0;
+}
+
+#buttonSpaceBox {
+ text-align: center;
+ margin: 0 0 13px 0;
+}
+
+#buttonSpace {
+    margin: 0 0 0 20px;
+   }
 
 #cms {
 padding: 0 0 50px 0;
@@ -28,10 +89,6 @@ h6 {
 
 .col-md-8 {
     padding: 20px;
-}
-
-#buttonSpace {
-  margin: 0 0 0 10px;
 }
 
 .logoImage {
@@ -83,12 +140,13 @@ h6 {
 }
 
 .top-30 {
-  padding: 40px 0 40px 0px;
+  padding: 40px 0;
 }
 
 .top31 {
-  padding: 40px 0 20px 25px;
+  padding: 40px 0;
 }
+
 
 /* Login Form CSS */
 .login-form {
