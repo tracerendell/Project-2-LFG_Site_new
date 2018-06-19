@@ -27,19 +27,30 @@
      </div>
     
 
-     <!-- Body From 14-Post Author Joins > AUTHOR-MANAGER.HTML -->
      <div class="container">
         <div class="row">
-          <div class="col-md-6 offset-md-2 top31">
-            <a class="btn btn-light" href="/sessions">Go to Sessions</a>
-            <a id="buttonSpace" class="btn btn-light" href="/cms">Create New Session</a>
+          <div class="col-md-6 offset-md-3 top31">
+    
+              <div class="row">
+                  <div id="newSessionBox2">
+                  <img src="Images/joystick02.png" class="iconColorSize" alt="New Session"><br>   
+                  <a id="buttonSpaceBox" class="btn btn-light" href="/sessions">Go to Sessions</a> 
+                  </div>
+  
+                  <div id="managePlayersBox2"> 
+                  <img src="Images/joystick01.png" class="iconColorSize" alt="Manage Players"><br> 
+                  <a id="buttonSpaceBox" class="btn btn-light" href="/cms">Create New Session</a>
+                  </div>
+              </div>
+            </div>
+
           </div>
         </div>
         <div class="row">
           <div class="col-md-8 offset-md-2">
             <div class="player-container">
 
-              <h2>Players</h2>
+              <h3>Players</h3>
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -50,7 +61,8 @@
                     <th>Delete Player</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="players-table"></tbody>
+                <tfoot>
                   <tr id="form-row">
                     <form id="player-form">
                       <td colspan="4">
@@ -61,14 +73,13 @@
                       </td>
                     </form>
                   </tr>
-                </tbody>
+                </tfoot>
               </table>
             </div>
           </div>
         </div>
         </div>
-     
-      <!-- end of body from 14-Post Author Joins > AUTHOR-MANAGER.HTML --> 
+
      
     
 
