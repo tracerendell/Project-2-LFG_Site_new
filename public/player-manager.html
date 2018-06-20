@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html lang ="en">
     <head>
-        <meta charset="utf-8">
+        <!-- <meta charset="utf-8">
         <title>Connected Gamer</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato|Raleway" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+        <meta charset="UTF-8">
+        <title>CMS - Express</title>
+        <!-- Latest compiled and minified CSS & JS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     </head>
     <body>
      <div class="jumbotron4">
@@ -27,30 +34,19 @@
      </div>
     
 
+     <!-- Body From 14-Post Author Joins > AUTHOR-MANAGER.HTML -->
      <div class="container">
         <div class="row">
-          <div class="col-md-6 offset-md-3 top31">
-    
-              <div class="row">
-                  <div id="newSessionBox2">
-                  <img src="Images/joystick02.png" class="iconColorSize" alt="New Session"><br>   
-                  <a id="buttonSpaceBox" class="btn btn-light" href="/sessions">Go to Sessions</a> 
-                  </div>
-  
-                  <div id="managePlayersBox2"> 
-                  <img src="Images/joystick01.png" class="iconColorSize" alt="Manage Players"><br> 
-                  <a id="buttonSpaceBox" class="btn btn-light" href="/cms">Create New Session</a>
-                  </div>
-              </div>
-            </div>
-
+          <div class="col-md-6 offset-md-2 top31">
+            <a class="btn btn-light" href="/sessions">Go to Sessions</a>
+            <a id="buttonSpace" class="btn btn-light" href="/cms">Create New Session</a>
           </div>
         </div>
         <div class="row">
           <div class="col-md-8 offset-md-2">
             <div class="player-container">
 
-              <h3>Players</h3>
+              <h2>Players</h2>
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -79,7 +75,8 @@
           </div>
         </div>
         </div>
-
+     
+      <!-- end of body from 14-Post Author Joins > AUTHOR-MANAGER.HTML --> 
      
     
 
@@ -96,7 +93,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Custom Script file not populated yet -->
-    <script src="js/cms.js" type="text/javascript"></script>
+    <script src="js/players.js" type="text/javascript"></script>
     <!-- <script src="js/domStuff.js" type="text/javascript"></script> -->
     </body>
   </html>
