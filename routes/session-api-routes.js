@@ -1,4 +1,4 @@
-//routes for sessions db
+//routes for groupList db
 
 //dependencies
 var db = require("../models");
@@ -7,61 +7,66 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-    //get all Sessions
-    app.get("/api/sessions", function (req, res) {
+    //get all Groups
+    app.get("/api/groupList", function (req, res) {
         var query = {};
         if (req.query.player_id) {
             query.PlayerId = req.query.player_id;
         }
 
-        db.Session.findAll({
+        db.Group.findAll({
             where: query,
             include: [db.Player]
-        }).then(function (dbSession) {
-            res.json(dbSession);
+        }).then(function (dbGroup) {
+            res.json(dbGroup);
         });
     });
 
-    //GET route to retrieve single Session
-    app.get("/api/sessions/:id", function (req, res) {
+    //GET route to retrieve single group
+    app.get("/api/groupList/:id", function (req, res) {
 
         db.Post.findOne({
             where: {
                 id: req.params.id
             },
             include: [db.Player]
-        }).then(function (dbSession) {
-            res.json(dbSession);
+        }).then(function (dbGroup) {
+            res.json(dbGroup);
         });
     });
 
-    //POST route to save new sessions
-    app.post("/api/sessions", function (req, res) {
-        db.Session.create(req.body).then(function (dbSession) {
-            res.json(dbSession);
+    //POST route to save new groups
+    app.post("/api/groupList", function (req, res) {
+        db.Group.create({
+            name: req.body.name,
+            platform: req.body.platform,
+            game_playing: req.body.game_playing,
+            profileId: req.user.id
+        }).then(function (dbGroup) {
+            res.json(dbGroup);
         });
     });
 
     //Delete route
-    app.delete("/api/sessions/:id", function (req, res) {
-        db.Session.destroy({
+    app.delete("/api/groupList/:id", function (req, res) {
+        db.Group.destroy({
             where: {
                 id: req.params.id
             }
-        }).then(function (dbSession) {
-            res.json(dbSession);
+        }).then(function (dbGroup) {
+            res.json(dbGroup);
         });
     });
 
-    //PUT route to update sessions
-    app.put("/api/sessions", function (req, res) {
-        db.Session.update(
+    //PUT route to update groups
+    app.put("/api/groupList", function (req, res) {
+        db.Group.update(
             req.body, {
                 where: {
                     id: req.body.id
                 }
-            }).then(function (dbSession) {
-            res.json(dbSession);
+            }).then(function (dbGroup) {
+            res.json(dbGroup);
         });
     });
 

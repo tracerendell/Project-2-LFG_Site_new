@@ -4,7 +4,7 @@ module.exports = function(app) {
     app.get("/api/players", function(req, res) {
 
         db.Player.findAll({
-            include: [db.Session]
+            include: [db.Group]
         }).then(function(dbPlayer) {
             res.json(dbPlayer);
         });
@@ -16,7 +16,7 @@ module.exports = function(app) {
             where: {
                 id: req.params.id
             },
-            include: [db.Session]
+            include: [db.Group]
         }).then(function(dbPlayer) {
             res.json(dbPlayer);
         });
