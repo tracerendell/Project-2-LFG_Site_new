@@ -90,8 +90,8 @@ $(document).ready(function () {
         var newGroupCardBody = $("<div>");
         newGroupCardBody.addClass("card-body");
         var newGroupBody = $("<p>");
-        newGroupName.text(group.title + " ");
-        newGroupBody.text(group.body);
+        newGroupName.text(group.name + " ");
+        newGroupBody.text(group.platform);
         newGroupDate.text(formattedDate);
         newGroupName.append(newGroupDate);
         newGroupCardHeading.append(deleteBtn);
