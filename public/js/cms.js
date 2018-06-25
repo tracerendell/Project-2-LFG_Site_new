@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-    //getting jQuery ref to session name, platform, game_playing, form, and player select
+    //getting jQuery ref to group name, platform, game_playing, form, and player select
     var playerSelect = $("#player");
-    var sessionInput = $("#session");
+    var groupInput = $("#group");
     var cmsForm = $("#cms");
     var platformSelect = $("#platform");
     var gameSelect = $("#game");
@@ -13,23 +13,23 @@ $(document).ready(function() {
 
     //gets part of url that comes after the "?"
     var url = window.location.search;
-    var sessionId;
+    var groupId;
     var playerId;
 
     //sets a flag for whether or not we're updating a post [to be false intially]
     var updating = false;
 
     //if we have this section in our url we pull post id from url
-    if (url.indexOf("?session_id=") !== -1) {
-        sessionId = url.split("=")[1];
-        getSessionData(SessionId, "session");
+    if (url.indexOf("?group_id=") !== -1) {
+        groupId = url.split("=")[1];
+        getGroupData(GroupId, "group");
     }
     // otherwise if we have player_id in our url, preset player select box to be our Player
     else if (url.indexOf("?player_id=") !== -1) {
         playerId = url.split("=")[1];
     }
 
-    //getting players and their sessions
+    //getting players and their groupList
     getPlayers();
 
     //function to handle form submit
@@ -40,9 +40,9 @@ $(document).ready(function() {
             return;
         }
 
-        //contructing a newSession object to hand to database
-        var newSession = {
-            name: sessionInput
+        //contructing a newGroup object to hand to database
+        var newGroup = {
+            name: groupInput
                 .val()
                 .trim(),
             
@@ -53,29 +53,29 @@ $(document).ready(function() {
                 .val()
         };
 
-        //if we are updating a session run updateSession, otherwise run submitSession
+        //if we are updating a group run updateSession, otherwise run submitSession
         if (updating) {
-            newSession.id = sessionId;
-            updateSession(newSession);
+            newGroup.id = groupId;
+            updateGroup(newGroup);
         }
         else {
-            submitSession(newSession);
+            submitGroup(newGroup);
         }
     }
 
-    //submits a new sesh and brings user to sessions page
-    function submitSession(session) {
-        $.post("/api/sessions", session, function() {
-            window.location.href = "/sessions";
+    //submits a new sesh and brings user to groupList page
+    function submitGroup(group) {
+        $.post("/api/groupList", group, function(res, err) {
+            window.location.href = "/groupList";
         });
     }
 
     //gets sesh data for current sesh if we're editing
-    function getSessionData(id, type) {
+    function getGroupData(id, type) {
         var queryUrl;
         switch (type) {
-            case "session":
-                queryUrl = "/api/sessions/" + id;
+            case "group":
+                queryUrl = "/api/groupList/" + id;
                 break;
             case "player":
                 queryUrl = "/api/players/" + id;
@@ -86,10 +86,10 @@ $(document).ready(function() {
         $.get(queryUrl, function(data) {
             if (data) {
                 console.log(data.PlayerId || data.id);
-                //if this session exists, prefill cms form
-                sessionInput.val(data.session);
+                //if this group exists, prefill cms form
+                groupInput.val(data.group);
                 platformSelect.val(data.platform);
-                gameSelect.val(data.game_playing)
+                gameSelect.val(data.game_playing);
                 playerId = data.PlayerId || data.id;
                 //if we have a sesh with this id, set a flag for us to know to update the post when we hit submit
                 updating = true;
@@ -137,14 +137,14 @@ $(document).ready(function() {
     // }
 
     //update a given sesh, bring user to sesh page when done
-    function updateSession(session) {
+    function updateGroup(group) {
         $.ajax({
             method: "PUT",
-            url: "/api/sessions",
-            data: session
+            url: "/api/groupList",
+            data: group
         })
         .then(function() {
-            window.location.href = "/sessions";
+            window.location.href = "/groupList";
         });
     }
 });

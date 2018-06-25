@@ -38,7 +38,7 @@ $(document).ready(function() {
         var newTr = $("<tr>");
         newTr.data("player", playerData);
         newTr.append("<td>" + playerData.name + "</td>");
-        newTr.append("<td>" + playerData.Sessions.length + "</td>");
+        newTr.append("<td>" + playerData.Groups.length + "</td>");
         return newTr;
     }
 
@@ -49,6 +49,7 @@ $(document).ready(function() {
             for (var i = 0; i < data.length; i++) {
                 rowsToAdd.push(createPlayerRow(data[i]));
             }
+            playerList.empty();
             renderPlayerList(rowsToAdd);
             nameInput.val("");
         });
@@ -71,7 +72,7 @@ $(document).ready(function() {
     function renderEmpty() {
         var alertDiv = $("<div>");
         alertDiv.addClass("alert alert-danger");
-        alertDiv.text("You must create a Player before you create a Session");
+        alertDiv.text("You must create a Player before you create a group listing");
         playerContainer.append(alertDiv);
     }
 

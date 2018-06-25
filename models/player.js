@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     Player.associate = function(models) {
         //Associating Player with Games
         //When a Player is deleted, also delete any associated Games
-        Player.hasMany(models.Session, {
+        Player.hasMany(models.Group, {
             onDelete: "cascade"
         });
     };

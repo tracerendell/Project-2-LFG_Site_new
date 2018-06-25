@@ -8,7 +8,7 @@ module.exports = function(app) {
 
     //index route loads view.html
     app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/sessions.html"));
+        res.sendFile(path.join(__dirname, "../public/groupList.html"));
     });
 
     //cms route loads cms.html
@@ -16,9 +16,9 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/cms.html"));
     });
 
-    //sessions route loads sessions.html
-    app.get("/sessions", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/sessions.html"));
+    //groupList route loads groupList.html
+    app.get("/groupList", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/groupList.html"));
     });
 
     //player route loads player-manager.html
