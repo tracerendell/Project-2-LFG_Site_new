@@ -29,38 +29,20 @@
      </div>
     
 
-
+     <!-- Body From 14-Post Author Joins > CMS.HTML -->
      <div class="container hidden">
-        <div class="row">
-          <div class="col-md-6 offset-md-3 top-30">
-                  <div class="row">
-                      <div id="newSessionBox">
-                      <img src="Images/joystick02.png" class="iconColorSize" alt="New Session"><br>   
-                      <a id="buttonSpaceBox" class="btn btn-light" href="/sessions">Go to Sessions</a> 
-                      </div>
-      
-                      <div id="managePlayersBox"> 
-                      <img src="Images/managePlayers.png" class="iconColorSize" alt="Manage Players"><br> 
-                      <a id="buttonSpaceBox" class="btn btn-light" id="buttonSpace" href="/players">Manage Players</a>
-                      </div>
-                  </div>
-                </div>
-
-
+        <div class="row top-30">
+          <div class="col-md-6 offset-md-3 top30">
+            <a class="btn btn-light" href="/groupList">Go to Groups</a> 
+            <a class="btn btn-light" id="buttonSpace" href="/players">Manage Players</a>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 offset-md-3">
             <form id="cms">
               <div class="form-group">
-                  <div class="form-group">
-                      <label for="category">Player Select:</label>
-                      <input placeholder="Player Name" type="text" class="form-control" id="player">
-                        <option value=""></option>
-                      </select>
-                    </div>
-                <label for="title">Session Name:</label>
-                <input placeholder="Session Name" type="text" class="form-control" id="session_name">
+                <label for="title">Group Name:</label>
+                <input placeholder="Group Name" type="text" class="form-control" id="group_name">
                 <br />
                 <div class="form-group">
                   <label for="category">Select Platform:</label>
@@ -81,6 +63,11 @@
                     <option value="Overwatch">Overwatch</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label for="category">Select Player:</label>
+                  <select class="custom-select" id="player">
+                  </select>
+                </div>
                 <br />
                 <button type="submit" class="btn btn-success submit">Ready to Play!</button>
               </div>
@@ -93,7 +80,7 @@
 
   
      
-
+      <!-- end of body from 14-Post Author Joins > CMS.HTML --> 
     
 
 

@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-    var Session = sequelize.define("Session", {
+    var Group = sequelize.define("Group", {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -24,15 +24,15 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Session.associate = function(models) {
+    Group.associate = function(models) {
         //we are saying that a Session should belong to a Player
         //a Session can't be created without a Player due to the foreign key constraint
-        Session.belongsTo(models.Player, {
+        Group.belongsTo(models.Player, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
 
-    return Session;
+    return Group;
 };

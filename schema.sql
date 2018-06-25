@@ -9,7 +9,7 @@ CREATE TABLE players
     PRIMARY KEY (id)
 );
 
-CREATE TABLE sessions
+CREATE TABLE groups
 (
     id int NOT NULL AUTO_INCREMENT,
     name varchar 24 is NOT NULL,
