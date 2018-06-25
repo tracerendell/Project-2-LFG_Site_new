@@ -42,6 +42,8 @@ $(document).ready(function() {
 
         //contructing a newSession object to hand to database
         var newSession = {
+            playerId: playerId,
+            
             name: sessionInput
                 .val()
                 .trim(),
@@ -67,7 +69,7 @@ $(document).ready(function() {
     //submits a new sesh and brings user to sessions page
     function submitSession(session) {
         $.post("/api/sessions", session, function() {
-            window.location.href = "/session";
+            window.location.href = "/sessions";
         });
     }
 

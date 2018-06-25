@@ -38,7 +38,7 @@ $(document).ready(function() {
         newTr.data("player", playerData);
         newTr.append("<td>" + playerData.name + "</td>");
         newTr.append("<td>" + playerData.Sessions.length + "</td>");
-        newTr.append("<td><a href='/session?player_id=" + playerData.id + "'>Go to Sessions</a></td>");
+        newTr.append("<td><a href='/sessions?player_id=" + playerData.id + "'>Go to Sessions</a></td>");
         newTr.append("<td><a href='/cms?player_id=" + playerData.id + "'>Create a Session</a></td>");
         newTr.append("<td><a style='cursor:pointer;color:red' class='delete-player'>Delete Player</a></td>");
         return newTr;

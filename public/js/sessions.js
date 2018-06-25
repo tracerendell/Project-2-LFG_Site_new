@@ -14,7 +14,7 @@ $(document).ready(function () {
     // Looks for a query param in the url for player_id
     var url = window.location.search;
     var playerId;
-    if (url.indexOf("?playerId=") !== -1) {
+    if (url.indexOf("?player_d=") !== -1) {
         playerId = url.split("=")[1];
         getSessions(playerId);
     }
